@@ -1,10 +1,12 @@
 
+    
 
 
 const input =document.querySelector('.add');
-const output=document.querySelector('.output');
 const knapp =document.querySelector('.knapp');
 
+
+// henter melding fra input via VisMelding fra functions som sender tibake melding og tid 
 knapp.addEventListener('click', (e) => {
     const visMelding=firebase.functions().httpsCallable('visMelding');
     e.preventDefault()
@@ -16,3 +18,4 @@ knapp.addEventListener('click', (e) => {
       });
     }
     )   
+

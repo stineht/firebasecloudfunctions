@@ -3,7 +3,6 @@
 
 const functions = require("firebase-functions");
 
-// The Firebase Admin SDK to access Firestore.
 const admin = require("firebase-admin");
 admin.initializeApp();
 const db= admin.firestore();
@@ -48,6 +47,7 @@ exports.leggTilMelding = functions.https.onRequest(async (request, response) =>{
 });
 
 
+
 // sender tilbake ny data som blir laget
 exports.sendTilbakeEndringer = functions.firestore
     .document("meldinger/{documentId}")
@@ -60,10 +60,16 @@ exports.sendTilbakeEndringer = functions.firestore
     });
 
 
+
+    // sender tilbake melding som sendes inn og tiden den er laget 
+    //bruker onCall for å slippe å være logget inn som admin 
     exports.visMelding = functions.https.onCall((data, context) => {
     
         const melding = data.melding;
-        const tidlaget =dayjs().format("HH:mm:ss");
+        const tidlaget =dayjs().format("HH:mm:ss"); //viser to timer feil tidspunkt (-2 timer)
        return ` ${melding} ${tidlaget}`;
        
       });
+
+      
+    
