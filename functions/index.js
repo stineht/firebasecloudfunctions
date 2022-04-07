@@ -43,7 +43,11 @@ exports.leggTilMelding = functions.https.onRequest(async (request, response) =>{
   const writeResult = await admin.firestore().collection("meldinger")
       .add({melding: melding, tidlaget: tidlaget});
 
-  response.json({result: `Message with ID: ${writeResult.id} added.`});
+  response.json({result: `Message with ID: ${writeResult.id} added.`})
+
+  .catch((error) => {
+      console.log(error)
+  })
 });
 
 
